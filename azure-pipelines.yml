@@ -29,7 +29,7 @@ stages:
           - task: CopyFiles@2
             displayName: Copy build output
             inputs:
-              SourceFolder: '$(Build.SourcesDirectory)/build'
+              SourceFolder: 'C:\Users\user\Downloads\New folder (8)\_work\1\s\build'
               Contents: '**'
               TargetFolder: '$(Build.ArtifactStagingDirectory)'
           - task: PublishBuildArtifacts@1
