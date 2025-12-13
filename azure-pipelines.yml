@@ -26,15 +26,16 @@ stages:
               command: 'custom'
               customCommand: 'run build'
 
-          - task: CopyFiles@2
-            displayName: Copy build output
-            inputs:
-              SourceFolder: 'C:\Users\user\Downloads\New folder (8)\_work\1\s\build'
-              Contents: '**'
-              TargetFolder: '$(Build.ArtifactStagingDirectory)'
+          # - task: CopyFiles@2
+          #   displayName: Copy build output
+          #   inputs:
+          #     SourceFolder: 'C:\Users\user\Downloads\New folder (8)\_work\1\s\build'
+          #     Contents: '**'
+          #     TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
           - task: PublishBuildArtifacts@1
             displayName: Publish Artifacts
             inputs:
-              PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+              PathtoPublish: '$(Build.ArtifactStagingDirectory)/build'
               ArtifactName: 'todofrontend artifacts'
               publishLocation: 'Container'
