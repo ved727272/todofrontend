@@ -1,17 +1,29 @@
 trigger: none 
 
-pool: Default
+pool:
+  name: Default
 
-- task: NodeTool@0
-  inputs:
-    versionSource: 'spec'
-    versionSpec: '16.x'
+stages:
+  - stage: Build
+    displayName: Build Artifacts
+    jobs:
+      - job: build
+        displayName: build
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSource: 'spec'
+              versionSpec: '16.x'
 
-- task: Npm@1
-  inputs:
-    command: 'install'
+          - task: Npm@1
+            inputs:
+              command: 'install'
 
-- task: Npm@1
-  inputs:
-    command: 'custom'
-    customCommand: 'run build'
+          - task: Npm@1
+            inputs:
+              command: 'custom'
+              customCommand: 'run build'
+         
+
+        
+
