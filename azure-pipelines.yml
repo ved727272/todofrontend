@@ -39,3 +39,10 @@ stages:
               PathtoPublish: '$(Build.ArtifactStagingDirectory)/build'
               ArtifactName: 'todofrontend artifacts'
               publishLocation: 'Container'
+
+          - task: Npm@1
+            inputs:
+              command: publish
+              workingDir: ./build
+              publishRegistry: useFeed
+              publishFeed:    
