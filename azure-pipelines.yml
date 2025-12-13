@@ -11,19 +11,23 @@ stages:
         displayName: build
         steps:
           - task: NodeTool@0
+            displayName: Node JS install
             inputs:
               versionSource: 'spec'
               versionSpec: '16.x'
 
           - task: Npm@1
+            displayName: NPM install
             inputs:
               command: 'install'
 
           - task: Npm@1
+            displayName: NPM run build
             inputs:
               command: 'custom'
               customCommand: 'run build'
           - task: PublishBuildArtifacts@1
+            displayName: Publish Artifacts
             inputs:
               PathtoPublish: '$(Build.ArtifactStagingDirectory)'
               ArtifactName: 'todoartifacts'
