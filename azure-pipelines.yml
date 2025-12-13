@@ -1,4 +1,4 @@
-trigger: none 
+trigger: none
 
 pool:
   name: Default
@@ -8,10 +8,10 @@ stages:
     displayName: Build Artifacts
     jobs:
       - job: build
-        displayName: build
+        displayName: build artifacts for todo
         steps:
           - task: NodeTool@0
-            displayName: Node JS install
+            displayName: Nods JS install
             inputs:
               versionSource: 'spec'
               versionSpec: '16.x'
@@ -20,18 +20,21 @@ stages:
             displayName: NPM install
             inputs:
               command: 'install'
-
           - task: Npm@1
-            displayName: NPM run build
+            displayName: NPM run Build
             inputs:
               command: 'custom'
               customCommand: 'run build'
+
+          - task: CopyFiles@2
+            displayName: Copy build output
+            inputs:
+              SourceFolder: '$(Build.SourcesDirectory)/build'
+              Contents: '**'
+              TargetFolder: '$(Build.ArtifactStagingDirectory)'
           - task: PublishBuildArtifacts@1
             displayName: Publish Artifacts
             inputs:
               PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-              ArtifactName: 'todoartifacts'
+              ArtifactName: 'todofrontend artifacts'
               publishLocation: 'Container'
-
-        
-
