@@ -30,3 +30,9 @@ stages:
         PathtoPublish: '$(System.DefaultWorkingDirectory)/build/'
         ArtifactName: 'todofrontend-artifacts'
         publishLocation: 'Container'
+    - task: PublishPipelineArtifact@1
+      displayName: Publish Artifacts
+      inputs:
+        targetPath: '$(System.DefaultWorkingDirectory)/build/'
+        artifact: 'todo-frontend'
+        publishLocation: 'pipeline'
