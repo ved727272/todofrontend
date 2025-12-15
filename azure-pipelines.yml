@@ -29,7 +29,7 @@ stages:
           - task: CopyFiles@2
             displayName: Copy build output
             inputs:
-              SourceFolder: 'C:\Users\user\Downloads\New folder (8)\_work\1\s\build'
+              SourceFolder: '$(Build.SourcesDirectory)/build'
               Contents: '**'
               TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
@@ -37,7 +37,7 @@ stages:
             displayName: Publish Artifacts
             inputs:
               PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-              ArtifactName: 'todofrontend artifacts'
+              ArtifactName: 'todofrontend-artifacts'
               publishLocation: 'Container'
 
           # - task: Npm@1
