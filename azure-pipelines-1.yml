@@ -24,12 +24,12 @@ stages:
         command: 'custom'
         customCommand: 'run build'
 
-    - task: PublishBuildArtifacts@1
-      displayName: Publish Artifacts
-      inputs:
-        PathtoPublish: '$(System.DefaultWorkingDirectory)/build/'
-        ArtifactName: 'todofrontend-artifacts'
-        publishLocation: 'Container'
+    # - task: PublishBuildArtifacts@1
+    #   displayName: Publish Artifacts
+    #   inputs:
+    #     PathtoPublish: '$(System.DefaultWorkingDirectory)/build/'
+    #     ArtifactName: 'todofrontend-artifacts'
+    #     publishLocation: 'Container'
     - task: PublishPipelineArtifact@1
       displayName: Publish Artifacts
       inputs:
