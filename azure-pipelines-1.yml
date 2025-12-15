@@ -36,9 +36,13 @@ stages:
         cliSources: '.'
 
     # SonarQube Analyze
-    - task: SonarQubeAnalyze@8
-      displayName: SonarQube Analyze
+    # - task: SonarQubeAnalyze@8
+    #   displayName: SonarQube Analyze
 
+    - task: SonarQubeAnalyze@8
+      inputs:
+        jdkversion: 'JAVA_HOME_17_X64'
+    
     # SonarQube Quality Gate
     - task: SonarQubePublish@8
       displayName: SonarQube Quality Gate
