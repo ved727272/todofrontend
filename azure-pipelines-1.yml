@@ -1,7 +1,7 @@
 trigger:
   - devlop
 pool:
-  name: Default
+  name: linux-hosted-agent
 stages:
 - stage: Build
   displayName: Build Artifacts
