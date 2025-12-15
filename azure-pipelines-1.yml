@@ -14,6 +14,36 @@ stages:
       inputs:
         versionSource: 'spec'
         versionSpec: '16.x'
+
+    # SonarQube Prepare
+    # - task: SonarQubePrepare@5
+    #   displayName: SonarQube Prepare
+    #   inputs:
+    #     SonarQube: 'sonarsvc'
+    #     scannerMode: 'CLI'
+    #     configMode: 'manual'
+    #     cliProjectKey: 'todo-ui'
+    #     cliProjectName: 'todoapp'
+    #     cliSources: '.'
+
+    - task: SonarQubePrepare@8
+      inputs:
+        SonarQube: 'sonarsvc'
+        scannerMode: 'cli'
+        configMode: 'manual'
+        cliProjectKey: 'todo-ui'
+        cliProjectName: 'todoapp'
+        cliSources: '.'
+
+    # SonarQube Analyze
+    - task: SonarQubeAnalyze@8
+      displayName: SonarQube Analyze
+
+    # SonarQube Quality Gate
+    - task: SonarQubePublish@8
+      displayName: SonarQube Quality Gate
+      inputs:
+        pollingTimeoutSec: '300'    
     - task: Npm@1
       displayName: NPM install
       inputs:
@@ -24,15 +54,11 @@ stages:
         command: 'custom'
         customCommand: 'run build'
 
-    # - task: PublishBuildArtifacts@1
-    #   displayName: Publish Artifacts
-    #   inputs:
-    #     PathtoPublish: '$(System.DefaultWorkingDirectory)/build/'
-    #     ArtifactName: 'todofrontend-artifacts'
-    #     publishLocation: 'Container'
     - task: PublishPipelineArtifact@1
       displayName: Publish Artifacts
       inputs:
         targetPath: '$(System.DefaultWorkingDirectory)/build/'
         artifact: 'todo-frontend'
         publishLocation: 'pipeline'
+   
+    
